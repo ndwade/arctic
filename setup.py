@@ -80,7 +80,6 @@ class PyTest(TestCommand):
         errno = pytest.main(args)
         sys.exit(errno)
 
-
 class defer_cythonize(list):
     def __init__(self, callback):
         self._list, self.callback = None, callback
@@ -105,9 +104,8 @@ def extensions():
     from Cython.Build import cythonize
     return cythonize(Extension('arctic._compress',
                                sources=["src/_compress.pyx", "src/lz4.c", "src/lz4hc.c"],
-                               extra_compile_args=['-fopenmp', '-fpermissive'], # Avoid compiling error with prange. Similar to http://stackoverflow.com/questions/36577182/unable-to-assign-value-to-array-in-prange
-                               extra_link_args=['-fopenmp']))
-
+                               # extra_compile_args=['-fopenmp', '-fpermissive'], # Avoid compiling error with prange. Similar to http://stackoverflow.com/questions/36577182/unable-to-assign-value-to-array-in-prange
+                               # extra_link_args=['-fopenmp']))
 
 setup(
     name="arctic",
